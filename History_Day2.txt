@@ -1,0 +1,377 @@
+    1  apt-get update; apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common -y ; curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    2  add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    3     $(lsb_release -cs) \
+    4     stable"; apt-get update; apt-get install docker-ce docker-ce-cli containerd.io -y 
+    5  docker verison
+    6  docker version
+    7  history 
+    8  docker version
+    9  docker ps 
+   10  docker ps -a
+   11  docker images
+   12  docker pull busybox
+   13  docker run busybox /bin/sh
+   14  docker ps 
+   15  docker ps -a
+   16  docker run -it busybox /bin/sh
+   17  docker images 
+   18  docker inspect busybox             
+   19  ls
+   20  docker ps 
+   21  docker ps -a
+   22  docker inspect 786743a832a8        
+   23  cat /etc/*-release
+   24  docker run -it ubuntu 
+   25  docker run -it centos
+   26  docker ps -a
+   27  docker ps 
+   28  docker run centos echo "Hello World"
+   29  docker ps -a
+   30  docker ps 
+   31  docker attach 799eb66e8c34        
+   32  docker ps 
+   33  docker kill 799eb66e8c34        
+   34  docker ps 
+   35  docker ps -a
+   36  docker start 799eb66e8c34        ; docker attach 799eb66e8c34        
+   37  history 
+   38  docker images 
+   39  docker ps 
+   40  docker start 799eb66e8c34        ; docker attach 799eb66e8c34        
+   41  docker ps 
+   42  docker attach 799eb66e8c34        
+   43  docker ps 
+   44  curl localhost
+   45  docker inspect 799eb66e8c34        
+   46  curl 172.17.0.2
+   47  docker ps 
+   48  docker commit -p -m "Firt Commit Httpd Cont." 799eb66e8c34   amit-test-httpd-image:v1
+   49  docker images 
+   50  docker ps 
+   51  curl 172.17.0.2
+   52  docker run -it amit-test-httpd-image:v1 
+   53  curl 172.17.0.2
+   54  curl 172.17.0.3
+   55  curl 172.17.0.4
+   56  history 
+   57  docker attach 799eb66e8c34 
+   58  curl 172.17.0.4
+   59  curl 172.17.0.2
+   60  history 
+   61  ls
+   62  docker images
+   63  docker tag amit-test-httpd-image:v1 amitvashist7/test-httpd-20200106:v1
+   64  docker images 
+   65  docker push amitvashist7/test-httpd-20200106:v1
+   66  docker login 
+   67  docker push amitvashist7/test-httpd-20200106:v1
+   68  docker logout 
+   69  docker images
+   70  docker ps -a
+   71  docker kill $(docker ps -aq)
+   72  docker rm $(docker ps -aq)
+   73  docker images 
+   74  docker images -q
+   75  docker rmi $(docker images -q)
+   76  docker images 
+   77  docker rmi $(docker images -q) --force 
+   78  docker images 
+   79  docker ps -a 
+   80  docker run -it amitvashist7/test-httpd-20200106:v1
+   81  history 
+   82  docker ps 
+   83  docker inspect 294666ff2cb1        
+   84  curl 172.17.0.4
+   85  docker kill 294666ff2cb1        
+   86  ls
+   87  cd docker-k8s-ericsson-20200106/
+   88  ls
+   89  git add . 
+   90  git commit -m "DockerFile"
+   91  git push 
+   92  git config --list 
+   93  git push 
+   94  ls
+   95  cd 
+   96  ls
+   97  mkdir test
+   98  ls
+   99  cd test/
+  100  ls
+  101  git clone https://github.com/amitvashisttech/docker-k8s-ericsson-20200106.git
+  102  ls
+  103  cd docker-k8s-ericsson-20200106/
+  104  ls
+  105  cd docker/
+  106  ls
+  107  cd images/apache/
+  108  ls
+  109  cat Dockerfile 
+  110  history 
+  111  ls
+  112  vim amit.html
+  113  ls
+  114  vim Dockerfile 
+  115  docker images 
+  116  docker build -t "testapache:v2" .
+  117  docker images 
+  118  docker run -d --name test03 testapache:v2
+  119  docker inspect test03
+  120  curl 172.17.0.4
+  121  curl 172.17.0.3
+  122  curl 172.17.0.2
+  123  curl 172.17.0.4
+  124  ls
+  125  cd ../../;git add . ; git commit -m "Dockerfile- New Index Page"; git push
+  126  ls
+  127  cd images/
+  128  ls
+  129  cd apache/
+  130  ls
+  131  cat Dockerfile 
+  132  git log
+  133  git diff 8575288bedb6~f806d1fa7ea1e
+  134  git diff 8575288bedb6 f806d1fa7ea1e
+  135  history 
+  136  ls -a
+  137  cd ../../
+  138  cd ..
+  139  ls
+  140  ls -a
+  141  cat .git/config 
+  142  history 
+  143  ls
+  144  cd 
+  145  docker ps 
+  146  docker run -it --name test-volume-01 ubuntu:16.04
+  147  docker run -it --name test-volume-02 -v /var/www/html ubuntu:16.04
+  148  docker ps 
+  149  docker ps -a
+  150  docker inspect test-volume-02
+  151  cd /var/lib/docker
+  152  ls
+  153  cd volumes/
+  154  ls
+  155  cd d0c93b237127eb1f1bf1af5178e9f3c61d3187c6e15316747402062334176687/
+  156  ls
+  157  cd _data/
+  158  ls
+  159  cat amitvashist7 
+  160  date
+  161  docker rm test-volume-02
+  162  ls
+  163  cat amitvashist7 
+  164  cd
+  165  docker run -it --name test-volume-02 -v /var/www/amitvashist ubuntu:16.04
+  166  docker volume ls 
+  167  docker volume inspect daf49269881f0a0c663139ed0f5a3f22df83db4d903ee718c2b44d0d5a579817
+  168  cd /var/lib/docker/volumes/daf49269881f0a0c663139ed0f5a3f22df83db4d903ee718c2b44d0d5a579817/_data
+  169  ls
+  170  cat abc.txt 
+  171  date >> abc.txt 
+  172  ls
+  173  hostname > docker_host.txt
+  174  ls
+  175  docker attach test-volume-02
+  176  cd 
+  177  history 
+  178  docker ps 
+  179  docker ps -a 
+  180  docker ps -aq 
+  181  docker kill $(docker ps -aq)
+  182  docker rm $(docker ps -aq)
+  183  docker ps -a
+  184  docker images 
+  185  docker pull busybox 
+  186  docker pull helloworld
+  187  docker pull hello
+  188  docker images 
+  189  docker images -q
+  190  docker rmi $(docker images -q)
+  191  docker images
+  192  docker pull amitvashist7/test-httpd-20200106:v1
+  193  docker pull amitvashist7/apache-ex4
+  194  docker images
+  195  docker tag amitvashist7/test-httpd-20200106 amitvashist7/apache-ex4:20200107
+  196  docker tag amitvashist7/test-httpd-20200106:latest amitvashist7/apache-ex4:20200107
+  197  docker tag amitvashist7/test-httpd-20200106:v1 amitvashist7/apache-ex4:20200107
+  198  docker image s
+  199  docker images
+  200  docker push amitvashist7/apache-ex4:20200107
+  201  docker login 
+  202  docker push amitvashist7/apache-ex4:20200107
+  203  history 
+  204  ls
+  205  git clone https://github.com/amitvashisttech/docker-k8s-ericsson-20200106.git
+  206  ls
+  207  cd docker-k8s-ericsson-20200106/
+  208  ls
+  209  history > History.txt
+  210  ls
+  211  mkdir docker/images/apache -p 
+  212  cd docker/images/apache/
+  213  ls
+  214  vim Dockerfile
+  215  ls
+  216  docker build -t testapache:v1 .
+  217  docker images 
+  218  docker run -d --name test01 testapache:v1 
+  219  docker ps 
+  220  docker ps -a
+  221  docker run -d ubuntu
+  222  docker ps -a
+  223  docker run -itd ubuntu
+  224  docker ps -a
+  225  docker run  --name test02 testapache:v1 
+  226  test01test01
+  227  docker run -d -p 5000:5000 --restart=always --name registry registry:2
+  228  ls
+  229  docker ps 
+  230  docker tag testapache:v1     localhost:5000/testapache:v1
+  231  docker images 
+  232  docker push localhost:5000/testapache:v1
+  233  docker ps 
+  234  docker run --name alpha -it -v /var/log/amit ubuntu:16.04
+  235  docker run --name beta -it --volumes-from alpha ubuntu:16.04
+  236  docker ps 
+  237  history 
+  238  docker volume ls 
+  239  docker volume create myvol01
+  240  docker volume ls 
+  241  docker run --name chi -it -v myvol01:/var/www/html/ ubuntu:16.04
+  242  docker run --name chi-01 -it -v myvol01:/var/www/html/ ubuntu:16.04
+  243  docker volume create myvol02
+  244  docker run --name chi-02 -it -v myvol01:/var/www/html/ -v myvol02:/var/www/myvol02 ubuntu:16.04
+  245  history 
+  246  ls
+  247  cd docker-k8s-ericsson-20200106/
+  248  ls
+  249  cd docker/
+  250  ls
+  251  cd images/
+  252  ls
+  253  cd apache/
+  254  ls
+  255  cat Dockerfile 
+  256  cd 
+  257  ls
+  258  cd docker-k8s-ericsson-20200106/
+  259  git pull
+  260  ls
+  261  cd docker/images/apache/
+  262  ls
+  263  docker images
+  264  docker run --name chi-03 -it -v ~/docker-k8s-ericsson-20200106/docker/images/apache:/var/www/html/ -v myvol02:/var/www/myvol02 testapache:v2
+  265  docker run --name chi-04 -d -v ~/docker-k8s-ericsson-20200106/docker/images/apache:/var/www/html/  testapache:v2
+  266  docker ps 
+  267  docker inspect 1c4a0b1ed38e        
+  268  curl 172.17.0.10
+  269  ls
+  270  curl 172.17.0.10
+  271  curl 172.17.0.10/amit.html
+  272  ls
+  273  cp -rf amit.html index.html
+  274  ls
+  275  curl 172.17.0.10
+  276  vim index.html 
+  277  curl 172.17.0.10
+  278  docker volume ls 
+  279  history 
+  280  ls
+  281  cd 
+  282  ls
+  283  docker ps 
+  284  docker run --name chi-05 -d -v ~/docker-k8s-ericsson-20200106/docker/images/apache:/var/www/html/  -p 80:80 testapache:v2
+  285  docker ps 
+  286  ls
+  287  cd docker-k8s-ericsson-20200106/docker/images/apache/
+  288  ls
+  289  vim index.html 
+  290  docker ps 
+  291  iptables -L
+  292  ifconfig 
+  293  docker run --name chi-05 -d -v ~/docker-k8s-ericsson-20200106/docker/images/apache:/var/www/html/  -p 443:80 testapache:v2
+  294  docker run --name chi-06 -d -v ~/docker-k8s-ericsson-20200106/docker/images/apache:/var/www/html/  -p 443:80 testapache:v2
+  295  docker ps 
+  296  history 
+  297  ls
+  298  docker ps 
+  299  docker images 
+  300  docker run -it --name web-01 -p 8080:80 testapache:v1
+  301  docker run -d --name web-02 -p 8080:80 testapache:v1
+  302  docker run -d --name web-03 -p 8081:80 testapache:v2
+  303  history 
+  304  docker start chi-06 
+  305  docker start chi-05
+  306  docker run --name web-04 -d -v ~/docker-k8s-ericsson-20200106/docker/images/apache:/var/www/html/  -p 8090:80 testapache:v2
+  307  iptables -L
+  308  netstat -tulnp
+  309  netstat -tulnp | grep -i docker-proxy
+  310  history 
+  311  ls
+  312  cd docker-k8s-ericsson-20200106/
+  313  ls
+  314  sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  315  chmod +x /usr/local/bin/docker-compose
+  316  ls
+  317  docker-compose version
+  318  cd 
+  319  git clone https://github.com/amitvashist7/k8s-docker-GL.git
+  320  ls
+  321  cd k8s-docker-GL/
+  322  ls
+  323  cd docker-demo/
+  324  ls
+  325  cp -rf compose /root/docker-k8s-ericsson-20200106/docker/
+  326  ls
+  327  cd /root/docker-k8s-ericsson-20200106/docker/
+  328  ls
+  329  cd compose/
+  330  ls
+  331  cd hello-world/
+  332  ls
+  333  cat amit.yaml 
+  334  docker images 
+  335  vim amit.yaml 
+  336  docker-compose up -d 
+  337  cp -rf amit.yaml docker-compose.yml
+  338  ls
+  339  docker-compose up -d 
+  340  docker ps 
+  341  ls
+  342  cd ..
+  343  ls
+  344  cd wordpress/
+  345  ls
+  346  vim docker-compose.yaml 
+  347  docker kill $(docker ps -qa)
+  348  docker ps 
+  349  docker-compose up -d 
+  350  docker-compose ps 
+  351  docker ps 
+  352  docker-compose down
+  353  ls
+  354  cd nginx/
+  355  ls
+  356  vim wordpress.conf 
+  357  cd ..
+  358  docker-compose up -d 
+  359  docker-compose down
+  360  docker-compose rm
+  361  docker-compose --help
+  362  ls
+  363  rm -rf db-data/
+  364  ls
+  365  rm logs/nginx/*
+  366  ls
+  367  cd wordpress/wp-*
+  368  ls
+  369  rm -rf wordpress/*
+  370  ls
+  371  cd ..
+  372  ls
+  373  cd ..
+  374  ls
+  375  cd ..
+  376  ls
+  377  history > History_Day2.txt 
