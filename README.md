@@ -1,0 +1,1 @@
+# docker-k8s-ericsson-20200106
