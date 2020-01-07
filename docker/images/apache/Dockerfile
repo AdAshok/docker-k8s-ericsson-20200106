@@ -10,5 +10,8 @@ RUN apt-get update
 # Install Apache Packages 
 RUN apt-get install apache2 -y 
 
+# Create New Index Page
+COPY amit.html /var/www/html/index.html
+
 # Excute the Apache Service
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
