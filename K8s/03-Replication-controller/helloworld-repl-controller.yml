@@ -5,7 +5,7 @@ metadata:
 spec:
   replicas: 2
   selector:
-    app: docket-get-started-3
+    app: docket-get-started-2
   template:
     metadata:
       labels:
