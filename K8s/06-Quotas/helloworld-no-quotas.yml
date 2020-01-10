@@ -1,9 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: helloworld-deployment-1
+  name: helloworld-deployment
+  namespace: ericsson
 spec:
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:
@@ -11,7 +12,7 @@ spec:
     spec:
       containers:
       - name: k8s-demo
-        image: amitvashist7/k8s-tiny-web:2
+        image: amitvashist7/k8s-demo
         ports:
-        - name: node-port
-          containerPort: 80
+        - name: nodejs-port
+          containerPort: 3000
