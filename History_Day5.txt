@@ -1,0 +1,501 @@
+    1  git clone https://github.com/amitvashisttech/docker-k8s-ericsson-20200106.git
+    2  ls
+    3  cd docker-k8s-ericsson-20200106/
+    4  ls
+    5  cd K8s/
+    6  ls
+    7  cd
+    8  cd - 
+    9  cd 01-Setup/
+   10  ls
+   11  vim install-kubernetes.sh 
+   12  ./install-kubernetes.sh 
+   13  mkdir -p $HOME/.kube;sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config; sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   14  kubectl get nodes 
+   15  ls
+   16  cd ..
+   17  ls
+   18  cd ..
+   19  ls
+   20  cd ..
+   21  ls
+   22  rm -rf docker-k8s-ericsson-20200106
+   23  git clone https://github.com/amitvashisttech/docker-k8s-ericsson-20200106.git
+   24  ls
+   25  cd docker-k8s-ericsson-20200106/
+   26  ls
+   27  cd K8s/
+   28  ls
+   29  cd 02-First-App/
+   30  ls
+   31  cat helloworld.yml 
+   32  kubectl get nodes 
+   33  kubectl get pods 
+   34  kubectl create -f helloworld.yml 
+   35  kubectl get pods 
+   36  kubectl get pods -o wide 
+   37  kubectl proxy --port=8080 & 
+   38  curl localhost
+   39  curl localhost:8080
+   40  curl localhost:8080/api/
+   41  curl localhost:8080/apis/
+   42  curl localhost:8080/api/v1
+   43  curl localhost:8080/api/v1/pods
+   44  kubectl versions
+   45  kubectl version
+   46  kubectl cluster-info
+   47  kubectl api-resources
+   48  ps -ef | grep -i proxy 
+   49  kill -9 20161  
+   50  ps -ef | grep -i proxy 
+   51  kubectl cluster-info
+   52  kubectl version
+   53  kubectl apt-versions
+   54  kubectl apt-version
+   55  kubectl api-versions
+   56  kubectl api-resources
+   57  kubectl proxy --port=8080 & 
+   58  curl localhost:8080
+   59  curl localhost:8080/api/
+   60  curl localhost:8080/apis/
+   61  curl localhost:8080/api
+   62  curl localhost:8080/api/v1
+   63  curl localhost:8080/api/v1/pods
+   64  ps -ef | grep -i proxy 
+   65  kill -9 23862  
+   66  history 
+   67  ls
+   68  kubectl get pods 
+   69  kubectl get pods -o wide 
+   70  kubectl describe pod nodehelloworld   
+   71  ls
+   72  cd 
+   73  ls
+   74  kubectl get pods 
+   75  kubectl delete pod nodehelloworld   
+   76  kubectl get pods 
+   77  ls
+   78  cd docker-k8s-ericsson-20200106/
+   79  ls
+   80  cd K8s/
+   81  ls
+   82  git pull 
+   83  ls
+   84  cat 03-Replication-controller/helloworld-repl-controller.yml 
+   85  kubectl get pods 
+   86  kubectl get rc
+   87  kubectl create -f 03-Replication-controller/helloworld-repl-controller.yml 
+   88  vi 03-Replication-controller/helloworld-repl-controller.yml 0
+   89  kubectl create -f 03-Replication-controller/helloworld-repl-controller.yml 
+   90  kubectl get pods 
+   91  kubectl get rc 
+   92  kubectl delete pods helloworld-controller-2-2xb7n
+   93  kubectl get pods 
+   94  kubectl delete pods helloworld-controller-2-6njr5 helloworld-controller-2-cj75j
+   95  kubectl get pods 
+   96  kubectl get pods -o wide 
+   97  kubectl delete pods helloworld-controller-2-cxv5p helloworld-controller-2-xqbx2
+   98  kubectl get pods -o wide 
+   99  ls
+  100  kubectl get pods 
+  101  kubectl scale --replicas=4 rc helloworld-controller-2
+  102  kubectl get pods 
+  103  kubectl edit rc helloworld-controller-2
+  104  kubectl get pods 
+  105  cat 03-Replication-controller/helloworld-repl-controller.yml 
+  106  kubectl apply -f 03-Replication-controller/helloworld-repl-controller.yml 
+  107  kubectl get pods 
+  108  history 
+  109  kubectl get rc 
+  110  kubectl delete rc 
+  111  kubectl delete rc --all
+  112  kubectl get pods 
+  113  kubectl apply -f 03-Replication-controller/helloworld-repl-controller.yml 
+  114  kubectl get rc 
+  115  kubectl delete -f 03-Replication-controller/helloworld-repl-controller.yml 
+  116  kubectl get rc 
+  117  ls
+  118  git pull
+  119  ls
+  120  cd ..
+  121  ls
+  122  cd - 
+  123  ls
+  124  git pull 
+  125  cd ../../
+  126  ls
+  127  cd - 
+  128  ls
+  129  cd ..
+  130  rm -rf docker-k8s-ericsson-20200106
+  131  ls
+  132  git clone https://github.com/amitvashisttech/docker-k8s-ericsson-20200106.git
+  133  ls
+  134  cd docker-k8s-ericsson-20200106/K8s/
+  135  ls
+  136  cd 04-Deployment/
+  137  ls
+  138  cat helloworld.yml 
+  139  kubectl create -f helloworld.yml 
+  140  kubectl get deployment 
+  141  kubectl get rs
+  142  kubectl get pods 
+  143  kubectl get pods -o wide
+  144  kubectl scale --replicas=10 deployment helloworld-deployment
+  145  kubectl get pods
+  146  kubectl scale --replicas=15 deployment helloworld-deployment
+  147  kubectl get pods
+  148  kubectl get deployments 
+  149  kubectl expose deployment --type=NodePort
+  150  kubectl expose deployment -type=NodePort
+  151  kubectl get deployments 
+  152  kubectl expose deployment helloworld-deployment --type=NodePort
+  153  kubectl get svc 
+  154  curl http://34.67.129.39:31796/
+  155  cd
+  156  kubectl get deployment
+  157  kubectl describe deployment helloworld-deployment
+  158  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:2
+  159  kubectl get pods 
+  160  kubectl get pods  --watch
+  161  kubectl get pods 
+  162  kubectl get deployment
+  163  kubectl get rs 
+  164  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:3
+  165  kubectl  get rs
+  166  kubectl describe  rs helloworld-deployment-6c5f9ccb4b
+  167  history 
+  168  kubectl rollout status deployment helloworld-deployment
+  169  kubectl rollout history deployment helloworld-deployment
+  170  kubectl rollout undo deployment helloworld-deployment
+  171  kubectl rollout history deployment helloworld-deployment
+  172  kubectl rollout status deployment helloworld-deployment
+  173  kubectl rollout history deployment helloworld-deployment
+  174  kubectl  get rs 
+  175  kubectl rollout history deployment helloworld-deployment
+  176  kubectl rollout undo deployment helloworld-deployment --to-revsion=1
+  177  kubectl rollout undo deployment helloworld-deployment -to-revsion=1
+  178  kubectl rollout undo deployment helloworld-deployment --to-revision=1
+  179  kubectl rollout status deployment helloworld-deployment
+  180  kubectl rollout history deployment helloworld-deployment
+  181  kubectl set image deployment helloworld-deployment k8s-demo=amitvashist7/k8s-tiny-web:3 --record
+  182  kubectl rollout status deployment helloworld-deployment
+  183  kubectl rollout history deployment helloworld-deployment
+  184  history 
+  185  ls
+  186  kubectl get deployments
+  187  kubectl delete deployments helloworld-deployment
+  188  kubectl  get svc 
+  189  kubectl delete svc helloworld-deployment
+  190  kubectl  get svc 
+  191  cd docker-k8s-ericsson-20200106/
+  192  ls
+  193  history > History_Day3.txt
+  194  git add . ; git commit -m "Deployment"; git push 
+  195  cd /tmp/
+  196  git clone https://github.com/amitvashist7/kubernetes-project.git
+  197  ls
+  198  cd kubernetes-project/
+  199  ls
+  200  cd users/
+  201  ls
+  202  cat README.md 
+  203  vi README.md 
+  204  ls
+  205  rm 1
+  206  ls
+  207  cat README.md 
+  208  sudo apt install openssl ; openssl genrsa -out amit.pem 2048
+  209  cd
+  210  cd /tmp/
+  211  openssl req -new -key amit.pem -out amit-csr.pem -subj "/CN=amit/O=myteam/"
+  212  openssl x509 -req -in amit-csr.pem -CA ca.crt -CAkey ca.key -CAcreateserial -out amit.crt -day
+  213  openssl x509 -req -in amit-csr.pem -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key  -CAcreateserial -out amit.crt -days 10000
+  214  ls
+  215  cd kubernetes-project/users/
+  216  ls
+  217  mv amit.pem ../../
+  218  cd ../../
+  219  ls
+  220  openssl x509 -req -in amit-csr.pem -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key  -CAcreateserial -out amit.crt -days 10000
+  221  ls
+  222  cat kubernetes-project/users/README.md 
+  223  openssl req -new -key amit.pem -out amit-csr.pem -subj "/CN=amit/O=myteam/"
+  224  ls
+  225  openssl x509 -req -in amit-csr.pem -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key  -CAcreateserial -out amit.crt -days 10000
+  226  ls
+  227  kubectl config view
+  228  vi kubernetes-project/users/README.md 
+  229  cat kubernetes-project/users/README.md
+  230  kubectl config set-credentials amit --client-certificate=amit.crt --client-key=amit.pem
+  231  kubectl get pods 
+  232  kubectl get nodes
+  233  kubectl config set-context amit --cluster=kubernetes --user amit
+  234  kubectl get nodes
+  235  kubectl get pods 
+  236  kubectl get pods -n kube-system
+  237  ls
+  238  cd kubernetes-project/users/
+  239  ls
+  240  cat user.yaml 
+  241  kubectl create -f ../deployment/helloworld.yml 
+  242  kubectl get pods 
+  243  cat user.yaml 
+  244  kubectl create -f user.yaml 
+  245  kubectl get pods 
+  246  kubectl get svc 
+  247  kubectl delete pod helloworld-deployment-759fc84489-fpvcn
+  248  exit
+  249  ls
+  250  cd docker-k8s-ericsson-20200106/
+  251  ls
+  252  kubectl get pods 
+  253  ls
+  254  kubectl get svc 
+  255  kubectl expose deployment helloworld-deployment 
+  256  kubectl get svc 
+  257  curl 10.110.128.101
+  258  kubectl describe svc helloworld-deployment
+  259  kubectl get deployment
+  260  kubectl edit deployment helloworld-deployment
+  261  kubectl get pods 
+  262  kubectl describe svc helloworld-deployment
+  263  kubectl get pods -o wide 
+  264  ls
+  265  cd K8s/
+  266  ls
+  267  cd 04-Deployment/
+  268  ls
+  269  vi helloworld.yml 
+  270  kubectl create -f helloworld
+  271  kubectl create -f helloworld.yml 
+  272  kubectl get deployments
+  273  kubectl get pods -o wide
+  274  kubectl describe svc helloworld-deployment
+  275  ls
+  276  kubectl get svc 
+  277  kubectl edit svc helloworld-deployment 
+  278  kubectl get svc 
+  279  kubectl get nodes 
+  280  curl k8s-worker01:32738
+  281  curl k8s-worker02:32738
+  282  history 
+  283  cd /tmp/
+  284  ls
+  285  history |  grep -i git 
+  286  cd 
+  287  git clone https://github.com/amitvashist7/kubernetes-project.git
+  288  ls
+  289  cd kubernetes-project/
+  290  ls
+  291  cd resourcequotas/
+  292  ls
+  293  cat resourcequota.yml 
+  294  kubectl create -f resourcequotas/resourcequota.yml
+  295  cd ..
+  296  kubectl create -f resourcequotas/resourcequota.yml
+  297  kubectl get rs --namespace=myspace
+  298  kubectl get rs 
+  299  kubectl get rs --namespace=myspace
+  300  kubectl describe rs --namespace=myspace
+  301  ls
+  302  kubectl create -f resourcequotas/helloworld-no-quotas.yml 
+  303  kubectl get rs --namespace=myspace
+  304  cat resourcequotas/helloworld-no-quotas.yml 
+  305  kubectl get rs --namespace=myspace
+  306  kubectl get pods --namespace=myspace
+  307  kubectl get rs --namespace=myspace
+  308  kubectl describe rs --namespace=myspace
+  309  kubectl delete deployment helloworld-deployment --namespace=myspace
+  310  cat resourcequotas/helloworld-with-quotas.yml
+  311  kubectl create -f resourcequotas/helloworld-with-quotas.yml
+  312  kubectl describe rs --namespace=myspace
+  313  kubectl get rs --namespace=myspace
+  314  kubectl get  pods  --namespace=myspace
+  315  kubectl describe rs  helloworld-deployment-67789b6c44 --namespace=myspace
+  316  kubectl get quota --namespace=myspace
+  317  kubectl get limits  --namespace=myspace
+  318  kubectl create -f resourcequotas/defaults.yml
+  319  kubectl get limits  --namespace=myspace
+  320  kubectl describe limits  limits --namespace=myspace
+  321  kubectl create -f resourcequotas/helloworld-no-quotas.yml
+  322  kubectl delete -f resourcequotas/helloworld-no-quotas.yml
+  323  kubectl create -f resourcequotas/helloworld-no-quotas.yml
+  324  kubectl get pods  --namespace=myspace
+  325  kubectl describe quota compute-quota --namespace=myspace
+  326  cat resourcequotas/defaults.yml 
+  327  cd
+  328  openssl genrsa -out amit.pem 2048
+  329  openssl req -new -key amit.pem -out amit-csr.pem -subj "/CN=amit/O=training/"
+  330  openssl x509 -req -in amit-csr.pem -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out amit.crt -days 10000
+  331  kubectl config view
+  332  kubectl config set-credentials amit --client-certificate=/root/amit.crt --client-key=/root/amit.pem
+  333  kubectl config set-context amit --cluster=kubernetes --user=amit
+  334  kubectl config get-contexts
+  335  kubectl get pods
+  336  ubectl config use-context amit
+  337  kubectl config use-context amit
+  338  kubectl config get-contexts
+  339  kubectl get pods
+  340  openssl genrsa -out test.pem 2048
+  341  penssl req -new -key test.pem -out test-csr.pem -subj "/CN=test/O=training/"
+  342  openssl req -new -key test.pem -out test-csr.pem -subj "/CN=test/O=training/"
+  343  openssl x509 -req -in test-csr.pem -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out test.crt -days 10000
+  344  kubectl config view
+  345  kubectl config set-credentials test --client-certificate=/root/test.crt --client-key=/root/test.pem
+  346  kubectl config view
+  347  kubectl config set-context test --cluster=kubernetes --user=test
+  348  kubectl config get-contexts
+  349  kubectl config use-context t
+  350  kubectl get pods 
+  351  cd kubernetes-project/
+  352  vi ../kubernetes-project/users/admin-user.yaml
+  353  cp -rf ../kubernetes-project/users/admin-user.yaml .
+  354  vim admin-user.yaml 
+  355  kubectl create -f admin-user.yaml 
+  356  kubectl config get-contexts
+  357  kubectl config set-context kubernetes-admin
+  358  kubectl create -f admin-user.yaml 
+  359  vi admin-user.yaml 
+  360  kubectl create -f admin-user.yaml 
+  361  kubectl config get-contexts
+  362  kubectl config delete-context kubernetes-admin
+  363  kubectl config get-contexts
+  364  kubectl config use-context kubernetes-admin
+  365  kubectl config use-context kubernetes-admin@kubernetes
+  366  kubectl config get-contexts
+  367  kubectl create -f admin-user.yaml 
+  368  kubectl config use-context test
+  369  kubectl get pods 
+  370  kubectl config use-context kubernetes-admin@kubernetes
+  371  kubectl delete -f admin-user.yaml
+  372  ls
+  373  cp -rf users/user.yaml .
+  374  vi user.yaml 
+  375  ls
+  376  rm admin-user.yaml user.yaml 
+  377  ls
+  378  cd service-discovery/
+  379  ls
+  380  cd ..
+  381  ls
+  382  cd dashboard/
+  383  ls
+  384  car README.md 
+  385  cat README.md 
+  386  ls
+  387  rm -rf amit* test*
+  388  ls
+  389  cd docker-k8s-ericsson-20200106/
+  390  ls
+  391  git pull
+  392  ls
+  393  cd K8s/
+  394  ls
+  395  cp -rf ../../kubernetes-project/resourcequotas 07-Quotas
+  396  cp -rf ../../kubernetes-project/users 06-Users
+  397  ls
+  398  mv 07-Quotas 06-Quotas/
+  399  mv 06-Users 07-Users/
+  400  ls
+  401  cd 06-Quotas/
+  402  ls
+  403  vim resourcequota.yml 
+  404  kubectl get ns
+  405  kubectl delete ns myspace       
+  406  kubectl get ns
+  407  ls
+  408  kubectl create -f resourcequota.yml 
+  409  kubectl get ns 
+  410  kubectl describe ns ericsson      
+  411  ls
+  412  cat helloworld-with-quotas.yml 
+  413  sed -i "s/myspace/ericsson/g" helloworld-with-quotas.yml 
+  414  sed -i "s/myspace/ericsson/g" helloworld-no-quotas.yml 
+  415  ls
+  416  kubectl create -f helloworld-with-quotas.yml
+  417  kubectl get pods 
+  418  kubectl delete pod --all
+  419  kubectl get pods 
+  420  kubectl delete deployment --all
+  421  kubectl get pods 
+  422  kubectl get pods -n ericsson
+  423  kubectl get rs -n ericsson
+  424  kubectl describe rs -n ericsson
+  425  kubectl delete deployment -n ericsson --all
+  426  ls
+  427  cat helloworld-no-quotas.yml 
+  428  kubectl create -f helloworld-no-quotas.yml 
+  429  kubectl get rs -n ericsson
+  430  kubectl describe rs -n ericsson
+  431  kubectl create -f helloworld-no-quotas.yml -n default
+  432  cd ..
+  433  ls
+  434  git add . ; git commit -m "06-Resource,Object Quotas"; git push
+  435  history 
+  436  kubectl  get pods --all-namespaces
+  437  ls
+  438  kubectl  get pods --all-namespaces
+  439  cd 
+  440  ls
+  441  cd /etc/kubernetes/
+  442  ls
+  443  cd manifests/
+  444  ls
+  445  cd ..
+  446  ls
+  447  cd pki/
+  448  ls
+  449  cd 
+  450  ls
+  451  openssl genras -out test-01.pem 2048
+  452  openssl genrsa -out test-01.pem 2048
+  453  ls
+  454  openssl req -new -key test-01.pem -out test-01.csr.pem -subj "/CN=test-01/O=training/"
+  455  ls
+  456  openssl x509 -req -in test-01.csr.pem -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out test-01.crt -days 10000
+  457  ls
+  458  kubectl config view
+  459  kubectl config set-credentials test-01 --client-certificate=/root/test-01.crt --client-key=/root/test-01.key
+  460  kubectl config view
+  461  history 
+  462  kubectl config get-contexts 
+  463  kubectl config set-context test-01 --cluster=kubernetes --user=test-01
+  464  kubectl config get-contexts 
+  465  kubectl get pods 
+  466  kubectl create -f docker-k8s-ericsson-20200106/K8s/04-Deployment/helloworld.yml 
+  467  kubectl get pods 
+  468  kubectl config get-contexts 
+  469  kubectl config use-context test-01
+  470  kubectl config get-contexts 
+  471  kubectl get pods 
+  472  ls -ltr 
+  473  kubectl config use-context kubernetes-admin
+  474  kubectl config use-context kubernetes-admin@kubernetes
+  475  kubectl config set-credentials test-01 --client-certificate=/root/test-01.crt --client-key=/root/test-01.pem
+  476  kubectl config use-context test-01
+  477  kubectl get pods 
+  478  kubectl config use-context kubernetes-admin@kubernetes
+  479  ls
+  480  cd docker-k8s-ericsson-20200106/
+  481  ls
+  482  cd K8s/
+  483  ls
+  484  cd 07-Users/
+  485  ls
+  486  cat admin-user.yaml 
+  487  cat user.yaml 
+  488  ls
+  489  vim admin-user.yaml 
+  490  kubectl create -f admin-user.yaml 
+  491  kubectl config use-context test-01
+  492  kubectl get pods 
+  493  kubectl config get-context
+  494  kubectl config get-contexts
+  495  kubectl get pods -n kube-system
+  496  ls
+  497  cd ..
+  498  ls
+  499  cd ..
+  500  ls
+  501  history > History_Day5.txt
